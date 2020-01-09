@@ -55,7 +55,7 @@ describe '#Book' do
     it("updates an book by id") do
       book = Book.new({:name => "Giant Steps", :id => nil, :genre => "Sci Fi", :isbn => 123234234})
       book.save()
-      book.update("Blue")
+      book.update({:name => "Blue", :genre => "Sci Fi", :isbn => 123234234})
       expect(book.name).to(eq("Blue"))
     end
   end

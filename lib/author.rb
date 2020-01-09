@@ -41,6 +41,19 @@ class Author
     Author.new({:name => name, :id => id, :bio => bio})
   end
 
+  def self.query(name)
+    search_results = []
+    authors = DB.exec("SELECT * FROM authors WHERE name LIKE '%#{name}%';")
+    authors.each() do |author|
+      name = author.fetch("name")
+      id = author.fetch("id").to_i
+      bio = author.fetch("bio")
+      search_results.push(Author.new({:name => name, :id => id, :bio => bio}))
+    end
+    return search_results
+  end
+
+
   def books
     Book.find_by_author(self.id)
   end

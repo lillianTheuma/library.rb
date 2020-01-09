@@ -58,6 +58,19 @@ class Book
     Book.new({:name => name, :id => id, :genre => genre, :isbn => isbn})
   end
 
+  def self.query(name)
+    search_results = []
+    books = DB.exec("SELECT * FROM books WHERE name LIKE '%#{name}%';")
+    books.each() do |book|
+      name = book.fetch("name")
+      id = book.fetch("id").to_i
+      genre = book.fetch("genre")
+      isbn  = book.fetch("isbn")
+      search_results.push(Book.new({:name => name, :id => id, :genre => genre, :isbn => isbn}))
+    end
+    return search_results
+  end
+
   def authors
     authors = []
     results = DB.exec("SELECT author_id FROM creators WHERE book_id = #{@id};")

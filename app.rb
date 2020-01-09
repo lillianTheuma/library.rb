@@ -2,6 +2,7 @@ require('sinatra')
 require('sinatra/reloader')
 require('./lib/book')
 require('./lib/patron')
+require('./lib/author')
 require('pry')
 require("pg")
 
@@ -79,14 +80,21 @@ delete('/books/:id') do
 end
 
 get('/books/search/') do
-  @book = Book.search(params[:searched])
-  erb(:search)
+  @books = Book.query(params[:searched])
+  erb(:book_search)
+end
+
+get('/authors/search/books/:book_id') do
+  @book = Book.find(params[:book_id].to_i())
+  @authors = Author.query(params[:searched])
+  erb(:author_search)
 end
 
 get('/authors/:author_id') do
   @author = Author.find(params[:author_id].to_i())
   erb(:author)
 end
+
 
 post('/authors') do
   @book = Book.find(params[:id].to_i())
