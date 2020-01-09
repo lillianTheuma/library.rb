@@ -3,7 +3,7 @@
   <ul>
     <% @authors.each do |author| %>
     <li>
-      <form action="/books/" method="post">
+      <form action="/books/<%=@book.id %>/authors/<%= author.id %>" method="post">
         <input type="hidden" name="author_id" id="author_id" value=<%= author.id %> readonly>
         <button type="submit" class="btn"><%= author.name %></button>
       </form>
@@ -14,5 +14,4 @@
   <% else %>
   <p>There are currently no authors to display.</p>
   <% end %>
-
   <a href="/books/<%= @book.id %>">Return to Book</a>

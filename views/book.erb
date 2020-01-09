@@ -6,8 +6,6 @@
     <h4>Book Genre: <%= @book.genre %></h4>
     <h4>Book isbn: <%= @book.isbn %></h4>
 
-
-
 <h3>Book Authors</h3>
 
   <% if @book.authors %>
@@ -20,5 +18,7 @@
     <p>There are no authors listed for this book yet.</p>
   <% end %>
 
+
+  
     <p><a href="/books/<%= @book.id %>/edit">Edit Book</a></p>
     <a href="/books">Return to Book List</a>

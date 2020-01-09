@@ -59,14 +59,10 @@ class Author
   end
 
   def update(attributes)
-    if (attributes.has_key?(:name)) && (attributes.fetch(:name) != nil)
-      @name = attributes.fetch(:name)
-      DB.exec("UPDATE authors SET name = '#{@name}' WHERE id = #{@id};")
-    end
-    if (attributes.has_key?(:bio)) && (attributes.fetch(:bio) != nil)
-      @name = attributes.fetch(:bio)
-      DB.exec("UPDATE authors SET bio = '#{@bio}' WHERE id = #{@id};")
-    end
+    @name = attributes.fetch(:name)
+    @bio = attributes.fetch(:bio)
+    DB.exec("UPDATE authors SET name = '#{@name}' WHERE id = #{@id};")
+    DB.exec("UPDATE authors SET bio = '#{@bio}' WHERE id = #{@id};")
   end
 
   def books

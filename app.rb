@@ -103,6 +103,12 @@ post('/authors') do
   erb(:book)
 end
 
+post('/books/:id/authors/:author_id') do
+  @book = Book.find(params[:id].to_i())
+  book = Book.find(params[:id].to_i)
+  book.addAuthor(params[:author_id].to_i)
+  erb(:book)
+end
 
 patch('/books/:id/authors/:author_id') do
   @book = Book.find(params[:id].to_i())

@@ -1,43 +1,56 @@
+<h1 class="jumbotron">Update <%= @book.name()%></h1>
 
-    <h1>Update <%= @book.name()%></h1>
-    <form action="/books/<%= @book.id() %>" method="post">
-      <input type="hidden" name="_method" value="patch">
+<div class="card-group">
+  <div class="card">
+    <div class="card-header">
 
-      <label for="name">Rename Book</label>
-      <input type="text" name="name" id="name">
+    </div>
+    <div class="card-body">
+      <form action="/books/<%= @book.id() %>" method="post">
+        <input type="hidden" name="_method" value="patch">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <label for="name">Rename Book</label>
+            <input type="text" name="name" id="name">
+          </li>
+          <li class="list-group-item">
+            <label for="genre">Change Genre</label>
+            <input type="text" name="genre" id="genre">
+          </li>
+          <li class="list-group-item">
+            <label for="isbn">Change isbn</label>
+            <input type="text" name="isbn" id="isbn">
+          </li>
+          <li class="list-group-item">
+            <button type="submit">Update</button>
+          </li>
+        </ul>
+      </form>
+    </div> <!-- class = card-body -->
+  </div> <!-- class = card -->
+  <div class="card">
+    <div class="card-header">
 
-      <label for="genre">Change Genre</label>
-      <input type="text" name="genre" id="genre">
-
-      <label for="isbn">Change isbn</label>
-      <input type="text" name="isbn" id="isbn">
-
-      <button type="submit">Update</button>
-    </form>
-
-    <form action="/books/<%= @book.id() %> /addAuthor" method="post">
-      <input type="hidden" name="_method" value="patch">
-
-      <label for="author_id">Author ID</label>
-      <input type="text" name="author_id" id="author_id">
-
-      <button type="submit">Add</button>
-    </form>
-
-    <a href="/books/new">Add a New Author</a>
-    <form action="/authors/search/books/<%= @book.id %>" method="get">
-      <div class="form-group">
-        <label for="searched">Search</label>
-        <input id="searched" name="searched" class="form-control" type="text">
-      </div>
-      <button type="submit">Go!</button>
-    </form>
-
-
-    <p><a href="/books">Return to Book List</a></p>
-
+    </div> <!-- class = card-header -->
+    <div class="card-body">
+      <h5> Add a new author! </h5>
+      <form action="/authors/search/books/<%= @book.id %>" method="get">
+        <div class="form-group">
+          <label for="searched">Search</label>
+          <input id="searched" name="searched" class="form-control" type="text">
+        </div>
+        <button type="submit">Go!</button>
+      </form>
+    </div> <!-- class = card-body -->
+  </div> <!-- class = card -->
+</div> <!-- class= card-group -->
+<div class="card">
+  <div class="card-body">
     <form action="/books/<%= @book.id() %>" method="post">
       <input type="hidden" name="_method" value="delete">
+      <p><a href="/books/<%= @book.id() %>">Return to Book</a></p>
 
       <button type="submit">Delete Book</button>
     </form>
+  </div> <!-- class = card-body -->
+</div> <!-- class = card -->

@@ -9,7 +9,6 @@ class Patron
     @address = attributes.fetch(:address)
   end
 
-
   def self.all
     returned_patrons = DB.exec("SELECT * FROM patrons;")
     patrons = []
@@ -65,9 +64,19 @@ class Patron
     return patrons
   end
 
-  # def songs
-  #   Song.find_by_patron(self.id)
-  # end
+  def books
+    books = []
+    results = DB.exec("SELECT book_id FROM checkouts WHERE patron_id = #{@id};")
+    results.each() do |result|
+      book_id = result.fetch("book_id").to_i()
+      book = DB.exec("SELECT * FROM books WHERE id = #{book_id};")
+      name = book.first().fetch("name")
+      genre = book.first().fetch("genre")
+      isbn = book.first().fetch("isbn")
+      books.push(Book.new({:name => name, :id => id, :genre => genre, :isbn => isbn}))
+    end
+    return books
+  end
 
   def update(name)
     @name = name

@@ -1,21 +1,26 @@
-
-  <h3>Available Books</h3>
-
-  <% if @books.any? %>
-  <ul>
-    <% @books.sort_by(&:name).each do |book| %>
-    <li><a href="/books/<%= book.id %>"><%= book.name %></a></li>
+<div class="card">
+  <div class="card-header">
+    <h3>Available Books</h3>
+  </div> <!-- class = card-header -->
+  <div class="card-body">
+    <% if @books.any? %>
+    <ul class="list-group list-group-flush">
+      <% @books.sort_by(&:name).each do |book| %>
+      <li class="list-group-item"><a href="/books/<%= book.id %>"><%= book.name %></a></li>
+      <% end %>
+    </ul>
+    <% else %>
+    <p>There are currently no books to display.</p>
     <% end %>
-  </ul>
-  <% else %>
-  <p>There are currently no books to display.</p>
-  <% end %>
-
-  <a href="/books/new">Add a New Book</a>
-  <form action="/books/search/" method="get">
-    <div class="form-group">
-      <label for="searched">Search</label>
-      <input id="searched" name="searched" class="form-control" type="text">
-    </div>
-    <button type="submit">Go!</button>
-  </form>
+  </div> <!-- class = card-body -->
+  <div class="card-footer">
+    <a href="/books/new">Add a New Book</a>
+  </div> <!-- class = card-footer -->
+</div> <!-- class = card -->
+<form action="/books/search/" method="get">
+  <div class="form-group">
+    <label for="searched">Search</label>
+    <input id="searched" name="searched" class="form-control" type="text">
+  </div>
+  <button type="submit">Go!</button>
+</form>

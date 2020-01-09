@@ -84,6 +84,14 @@ class Book
     return authors
   end
 
+  def is_available
+    book = DB.exec("SELECT * FROM checkouts WHERE book_id = #{@id}")
+    if book != nil
+      return true
+    else
+      return false
+    end
+  end
 
   def update(attributes)
     @name = attributes.fetch(:name)

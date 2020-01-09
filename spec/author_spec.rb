@@ -62,13 +62,13 @@ describe '#Author' do
     end
   end
 
-  # describe('#update') do
-  #   it("Able to change an authors name") do
-  #     author = Author.new({:name => "John Coltrane", :id => nil, :bio => "Musician"})
-  #     author.save()
-  #     author.update({:name => "Joan Rivers", :id => nil, :bio => "Comedy"})
-  #     expect(author.name).to(eq("Joan Rivers"))
-  #   end
-  # end
+  describe('#update') do
+    it("Able to change an authors name") do
+      author = Author.new({:name => "John Coltrane", :id => nil, :bio => "Musician"})
+      author.save()
+      author.update({:name => "Joan Rivers", :id => nil, :bio => "Comedy"})
+      expect(author.name).to(eq("Joan Rivers"))
+    end
+  end
 
 end
